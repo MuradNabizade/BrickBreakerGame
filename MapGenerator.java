@@ -21,7 +21,7 @@ public class MapGenerator {
         for(int i = 0;i<map.length;i++){
             for(int j=0;j<map[0].length;j++) {
                 if(map[i][j]>0){
-                    g.setColor(Color.BLUE);
+                    g.setColor(Color.RED);
                     g.fillRect(j*brickwidth+80,i*brickHeight+50,brickwidth,brickHeight);
 
 
@@ -33,6 +33,8 @@ public class MapGenerator {
             }
         }
     }
+
+
 
     public void setBrickValue(int value, int row,int col){
         map[row][col]=value;
