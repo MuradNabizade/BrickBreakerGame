@@ -16,7 +16,7 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
     private int totalBricks=21;
 
     private Timer time;
-    private int delay= 5;
+    private int delay= 8;
 
     private  int playerX=310;
 
@@ -56,9 +56,14 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
         g.setFont(new Font("serif",Font.BOLD,25));
         g.drawString(""+score,590,30);
 
+        //pause System for Game
+        g.setColor(Color.DARK_GRAY);
+        g.setFont(new Font("serif",Font.BOLD,25));
+        g.drawString("Press Space to Pause",100,30);
+
 
         // the paddle
-        g.setColor(Color.green);
+        g.setColor(Color.orange);
         g.fillRect(playerX,550,100,8);
 
         // the ball
@@ -66,15 +71,15 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
         g.fillOval(ballposX,ballposY,20,20);
 
         if(totalBricks==0){
-            play=false;
-            ballXdir=0;
-            ballDirY=0;
-            g.setColor(Color.RED);
-            g.setFont(new Font("serif",Font.BOLD,35));
-            g.drawString("You won",190,300);
+                play = false;
+                ballXdir = 0;
+                ballDirY = 0;
+                g.setColor(Color.RED);
+                g.setFont(new Font("serif", Font.BOLD, 35));
+                g.drawString("You won", 190, 300);
 
-            g.setFont(new Font("serif",Font.BOLD,35));
-            g.drawString("Press Enter To Restart",190,35);
+                g.setFont(new Font("serif", Font.BOLD, 35));
+                g.drawString("Press R To Restart", 190, 35);
         }
 
         if(ballposY>570){
@@ -86,7 +91,7 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
             g.drawString("Game OVER",190,300);
 
             g.setFont(new Font("serif",Font.BOLD,35));
-            g.drawString("Press Enter To Restart",220,335);
+            g.drawString("Press R To Restart",220,335);
 
         }
 
@@ -94,6 +99,7 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
 
 
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e){
@@ -177,7 +183,7 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
                 moveLeft();
             }
         }
-        if(e.getKeyCode()==KeyEvent.VK_ENTER){
+        if(e.getKeyCode()==KeyEvent.VK_R){
             if(!play){
                 play=true;
                 ballposX=120;
@@ -188,6 +194,19 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
                 score=0;
                 totalBricks=21;
                 map=new MapGenerator(3,7);
+                repaint();
+            }
+        }
+        if(e.getKeyCode()==KeyEvent.VK_SPACE){
+            if(play){
+                play=false;
+                ballposX=ballposX;
+                ballposY=ballposY;
+                ballXdir=ballXdir;
+                ballDirY=ballDirY;
+                playerX=playerX;
+                score=score;
+                totalBricks=totalBricks;
                 repaint();
             }
         }
