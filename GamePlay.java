@@ -2,12 +2,15 @@ package com.muradn;
 
 
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 
 public class GamePlay extends JPanel implements KeyListener, ActionListener {
@@ -26,6 +29,7 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
     private int ballDirY=-2;
 
     private MapGenerator map;
+    Image img = Toolkit.getDefaultToolkit().createImage("/Users/muradnabizade/Desktop/334549.jpeg");
 
 
     public GamePlay(){
@@ -42,6 +46,12 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
         //background
         g.setColor(Color.black);
         g.fillRect(1,1,692,592);
+
+        g.drawImage(img, 10, 10, null);
+
+
+
+
 
         //draw map
         map.draw((Graphics2D)g);
@@ -214,7 +224,7 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
     }
     public void moveRight(){
         play=true;
-        playerX+=40;
+        playerX += 40;
     }
     public void moveLeft(){
         play=true;
